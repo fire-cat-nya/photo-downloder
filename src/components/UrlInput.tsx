@@ -39,6 +39,11 @@ export default function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
     }
   };
 
+  // フォーカス時に全テキストを選択
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.select();
+  };
+
   const isValidUrl = (string: string) => {
     try {
       const cleanedString = cleanUrl(string);
@@ -70,6 +75,7 @@ export default function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
             id="url"
             value={url}
             onChange={handleUrlChange}
+            onFocus={handleFocus}
             placeholder="https://example.com"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
             disabled={isLoading}
