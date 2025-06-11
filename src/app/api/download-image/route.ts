@@ -3,8 +3,7 @@ import axios from "axios";
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const imageUrl = searchParams.get("url");
+    const imageUrl = request.nextUrl.searchParams.get("url");
 
     if (!imageUrl) {
       return NextResponse.json({ error: "画像URLが必要です" }, { status: 400 });
